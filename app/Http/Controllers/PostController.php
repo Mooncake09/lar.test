@@ -7,6 +7,12 @@ use App\Post;
 
 class PostController extends Controller
 {
+
+    public function __construct()
+    {
+        return $this->middleware('auth')->except(['index', 'show']);
+    }
+
     public function index()
     {
 
@@ -32,7 +38,8 @@ class PostController extends Controller
 
         $post = Post::create([
             'title' => request('title'),
-            'body' => request('body')
+            'body' => request('body'),
+            'user_id' => auth()->id()
         ]);
 
         $post->save();
@@ -60,6 +67,7 @@ class PostController extends Controller
 
     public function update(Request $request, $id)
     {
+
         $this->validate($request, [
             'title' => 'required|min:5',
             'body' => 'required|min:10'
@@ -79,9 +87,11 @@ class PostController extends Controller
 
     public function destroy($id)
     {
-        $post = Post::find($id);
 
-        $post->delete();
+            $post = Post::find($id);
+            $post->delete();
+
+
 
         return redirect('/');
     }

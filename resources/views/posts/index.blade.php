@@ -1,10 +1,11 @@
 @extends('layouts.master')
 
 @section('content')
+
     @foreach($posts as $post)
     <div class="blog-post">
         <a href="/post/{{$post->id}}"><h2 class="blog-post-title">{{$post->title}}</h2></a>
-        <p class="blog-post-meta">December 23, 2013 by <a href="#">Jacob</a></p>
+        <p class="blog-post-meta">December 23, 2013 by <a href="#">{{$post->user->name}}</a></p>
 
         <p>
             {{$post->body}}

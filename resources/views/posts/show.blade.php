@@ -4,19 +4,20 @@
 
     <div class="blog-post">
         <h2 class="blog-post-title">{{$post->title}}</h2>
-        <p class="blog-post-meta">December 23, 2013 by <a href="#">Jacob</a></p>
+        <p class="blog-post-meta">December 23, 2013 by <a href="#">{{$post->user->name}}</a></p>
 
         <p>
             {{$post->body}}
         </p>
+        @if(Auth::check())
+            <a href="/post/{{$post->id}}/edit" class="btn btn-light">Редактировать</a>
 
-        <a href="/post/{{$post->id}}/edit" class="btn btn-light">Редактировать</a>
-
-        <form action="/post/{{$post->id}}" method="post" class="form-control-sm">
-            {{csrf_field()}}
-            @method('DELETE')
-            <input type="submit" class="btn btn-danger" value="Удалить">
-        </form>
+            <form action="/post/{{$post->id}}" method="post" class="form-control-sm">
+                {{csrf_field()}}
+                @method('DELETE')
+                <input type="submit" class="btn btn-danger" value="Удалить">
+            </form>
+        @endif
     </div>
 
     <nav class="blog-pagination">

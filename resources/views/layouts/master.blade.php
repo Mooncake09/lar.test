@@ -25,13 +25,13 @@
 
       @include('layouts.header')
 
-      @include('layouts.postheader')
+      {{--@include('layouts.postheader')--}}
 
     <main role="main" class="container">
       <div class="row">
         <div class="col-md-8 blog-main">
           <h3 class="pb-3 mb-4 font-italic border-bottom">
-            очень нравится
+            Пока что тут еще не очень все красиво, все потому что мне лень возиться с версткой
           </h3>
 
           @yield('content')
